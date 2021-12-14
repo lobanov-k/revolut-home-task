@@ -17,11 +17,14 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader',
-                ],
+                test: /\.(ttf|png|jpeg|jpg)$/,
+                type: 'asset/resource',
             },
+            {
+                test: /\.svg$/i,
+                issuer: /\.[jt]sx?$/,
+                use: ['@svgr/webpack'],
+            }
         ],
     },
     resolve: {

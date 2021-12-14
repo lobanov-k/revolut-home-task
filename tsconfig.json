@@ -24,6 +24,6 @@
         "downlevelIteration": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src"],
+    "include": ["src", "tests/setup-tests.ts"],
     "exclude": ["src/node_modules"]
 }
