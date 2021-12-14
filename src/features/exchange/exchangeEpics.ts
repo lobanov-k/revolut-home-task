@@ -39,7 +39,7 @@ export const handleRatesPollingEpic: EpicType = (
         filter(startPollingRates.match),
         mergeMap(() => {
             let previousData: RatesData;
-            return timer(0, 1000000).pipe(
+            return timer(0, 10000).pipe(
                 switchMap(async () => {
                     const { base, rates: { USD, GBP, EUR } } = await getRates();
                     const newData = {
