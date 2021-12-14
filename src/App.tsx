@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Exchange } from 'features/balances/Exchange';
+import MainContainer from 'components/MainContainer';
+import Exchange from 'features/exchange/Exchange';
+import { startPollingRates } from 'features/exchange/exchangeSlice';
+import CurrencySelector from 'features/currency-selector/CurrencySelector';
+import { selectIsDisplayed } from 'features/currency-selector/selectors';
 
 export default function App() {
+    const dispatch = useDispatch();
+    const isDisplayedSelector = useSelector(selectIsDisplayed);
+
+    useEffect(() => {
+        dispatch(startPollingRates());
+    }, []);
+
     return (
-        <div>
-            <Exchange/>
-        </div>
+        <MainContainer>
+            {
+                isDisplayedSelector ?
+                    (<CurrencySelector />) :
+                    (<Exchange/>)
+            }
+        </MainContainer>
     );
 }
